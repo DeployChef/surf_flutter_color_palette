@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_courses_template/screens/palette_screen.dart';
+import 'package:surf_flutter_courses_template/DataAccess/mock_color_repository.dart';
+import 'package:surf_flutter_courses_template/Screens/palette_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,8 +11,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: PaletteScreen(),
+    var repo = MockColorRepository();
+
+    return MaterialApp(
+      home: PaletteScreen(
+        repository: repo,
+      ),
     );
   }
 }
