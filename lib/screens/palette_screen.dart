@@ -12,18 +12,16 @@ class PaletteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 110,
+        toolbarHeight: 115,
         title: Padding(
           padding: const EdgeInsets.only(top: 44),
           child: Text(
             "Эксклюзивная палитра\n«Colored Box»",
-            style: GoogleFonts.ubuntu(
-              fontWeight: FontWeight.w700,
-              fontSize: 30,
-              color: const Color(0xFF252838),
-            ),
+            style: theme.textTheme.bodyLarge,
           ),
         ),
       ),

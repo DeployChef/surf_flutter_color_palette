@@ -5,12 +5,14 @@ import 'package:surf_flutter_courses_template/Screens/color_details_screen.dart'
 import 'package:surf_flutter_courses_template/Utils/hex_color.dart';
 
 class ColorCard extends StatelessWidget {
-  ColorDto _colorDto;
+  final ColorDto _colorDto;
 
   ColorCard({super.key, required ColorDto colorDto}) : _colorDto = colorDto;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,19 +45,11 @@ class ColorCard extends StatelessWidget {
           ),
           Text(
             _colorDto.name,
-            style: GoogleFonts.ubuntu(
-              fontWeight: FontWeight.w400,
-              fontSize: 12,
-              color: const Color(0xFF252838),
-            ),
+            style: theme.textTheme.bodySmall,
           ),
           Text(
             _colorDto.hex,
-            style: GoogleFonts.ubuntu(
-              fontWeight: FontWeight.w400,
-              fontSize: 12,
-              color: const Color(0xFF252838),
-            ),
+            style: theme.textTheme.bodySmall,
           )
         ],
       ),
