@@ -66,26 +66,17 @@ class ColorDetailsScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 56,
-                      child: ElevatedButton(
-                        child: Text("Red ${color.red}"),
-                        onPressed: () {},
-                      ),
+                    DetailsButton(
+                      child: Text("Red ${color.red}"),
+                      onPressed: () {},
                     ),
-                    SizedBox(
-                      height: 56,
-                      child: ElevatedButton(
-                        child: Text("Green ${color.green}"),
-                        onPressed: () {},
-                      ),
+                    DetailsButton(
+                      child: Text("Green ${color.green}"),
+                      onPressed: () {},
                     ),
-                    SizedBox(
-                      height: 56,
-                      child: ElevatedButton(
-                        child: Text("Blue ${color.blue}"),
-                        onPressed: () {},
-                      ),
+                    DetailsButton(
+                      child: Text("Blue ${color.blue}"),
+                      onPressed: () {},
                     ),
                   ],
                 )

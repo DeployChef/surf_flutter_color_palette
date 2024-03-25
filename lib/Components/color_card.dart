@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:surf_flutter_courses_template/Models/color_dto.dart';
 import 'package:surf_flutter_courses_template/Screens/color_details_screen.dart';
@@ -24,6 +25,27 @@ class ColorCard extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               color: HexColor.fromHex(_colorDto.hex),
               child: InkWell(
+                onLongPress: () async {
+                  await Clipboard.setData(ClipboardData(text: _colorDto.hex));
+                  final snackBar = SnackBar(
+                    width: 173,
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    content: Container(
+                      height: 64,
+                      child: Center(
+                          child: Text(
+                        "Hex скопирован",
+                        style: theme.textTheme.bodyMedium!.copyWith(color: Colors.white),
+                      )),
+                    ),
+                    behavior: SnackBarBehavior.floating,
+                  );
+
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
                 onTap: () {
                   Navigator.push<ColorDetailsScreen>(
                     context,
