@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:surf_flutter_courses_template/Components/details_button.dart';
 import 'package:surf_flutter_courses_template/Models/color_dto.dart';
+import 'package:surf_flutter_courses_template/Utils/copy_helper.dart';
 import 'package:surf_flutter_courses_template/Utils/hex_color.dart';
 
 class ColorDetailsScreen extends StatelessWidget {
@@ -47,7 +48,7 @@ class ColorDetailsScreen extends StatelessWidget {
                   _colorDto.name,
                   style: theme.textTheme.bodyLarge,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 DetailsButton(
@@ -58,7 +59,9 @@ class ColorDetailsScreen extends StatelessWidget {
                       Text(_colorDto.hex),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await CopyHelper.copyWithSnackbar(context, _colorDto.hex, "Hex скопирован");
+                  },
                 ),
                 const SizedBox(
                   height: 16,
@@ -68,15 +71,21 @@ class ColorDetailsScreen extends StatelessWidget {
                   children: [
                     DetailsButton(
                       child: Text("Red ${color.red}"),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await CopyHelper.copyWithSnackbar(context, color.red.toString(), "Red скопирован");
+                      },
                     ),
                     DetailsButton(
                       child: Text("Green ${color.green}"),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await CopyHelper.copyWithSnackbar(context, color.green.toString(), "Green скопирован");
+                      },
                     ),
                     DetailsButton(
                       child: Text("Blue ${color.blue}"),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await CopyHelper.copyWithSnackbar(context, color.blue.toString(), "Blue скопирован");
+                      },
                     ),
                   ],
                 )
@@ -84,38 +93,6 @@ class ColorDetailsScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class DetailsButton extends StatelessWidget {
-  const DetailsButton({
-    super.key,
-    required Widget child,
-    required Function()? onPressed,
-  })  : _child = child,
-        _onPressed = onPressed;
-
-  final Widget _child;
-  final Function()? _onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 56,
-      decoration: BoxDecoration(
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 6,
-            offset: Offset(0, 10),
-          ),
-        ],
-      ),
-      child: ElevatedButton(
-        onPressed: _onPressed,
-        child: _child,
       ),
     );
   }
