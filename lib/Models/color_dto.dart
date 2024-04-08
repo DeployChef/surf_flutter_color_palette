@@ -15,7 +15,7 @@ class ColorsData {
   ColorsData.fromJson(Map<String, dynamic> json) {
     if (json['colors'] != null) {
       json['colors'].forEach((v) {
-        if (v['value'] != null) colors!.add(ColorDto.fromJson(v));
+        if (v['value'] != null) colors.add(ColorDto.fromJson(v));
       });
     }
   }
