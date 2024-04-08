@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:surf_flutter_courses_template/assets/app_colors.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
@@ -10,23 +11,23 @@ class AppTheme {
         bodyLarge: GoogleFonts.ubuntu(
           fontWeight: FontWeight.w700,
           fontSize: 30,
-          color: const Color(0xFF252838),
+          color: AppColors.darkBlue,
         ),
         bodySmall: GoogleFonts.ubuntu(
           fontWeight: FontWeight.w400,
           fontSize: 12,
-          color: const Color(0xFF252838),
+          color: AppColors.darkBlue,
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
           elevation: 0,
-          surfaceTintColor: Colors.white,
-          foregroundColor: const Color(0xFF252838),
+          surfaceTintColor: AppColors.white,
+          foregroundColor: AppColors.darkBlue,
           textStyle: GoogleFonts.ubuntu(
             fontWeight: FontWeight.w400,
             fontSize: 16,

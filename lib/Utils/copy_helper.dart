@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:surf_flutter_courses_template/assets/app_colors.dart';
 
 class CopyHelper {
   static Future<void> copyWithSnackbar(BuildContext context, String value, String snackbarText) async {
@@ -17,7 +18,7 @@ class CopyHelper {
           child: Center(
               child: Text(
             snackbarText,
-            style: theme.textTheme.bodyMedium!.copyWith(color: Colors.white),
+            style: theme.textTheme.bodyMedium!.copyWith(color: AppColors.white),
           )),
         ),
         behavior: SnackBarBehavior.floating,
