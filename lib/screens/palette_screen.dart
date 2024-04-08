@@ -1,35 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:surf_flutter_courses_template/assets/app_strings.dart';
+import 'package:surf_flutter_courses_template/components/color_card.dart';
+import 'package:surf_flutter_courses_template/data_access/i_color_repository.dart';
+import 'package:surf_flutter_courses_template/models/color_dto.dart';
 
 class PaletteScreen extends StatelessWidget {
-  const PaletteScreen({Key? key}) : super(key: key);
+  final IColorRepository _repository;
+
+  const PaletteScreen({super.key, required IColorRepository repository}) : _repository = repository;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Эксклюзивная палитра\n«Colored Box»",
-          style: GoogleFonts.ubuntu(
-            fontWeight: FontWeight.w700,
-            fontSize: 30,
-            color: const Color(0xFF252838),
+        toolbarHeight: 115,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 44),
+          child: Text(
+            AppStrings.title,
+            style: theme.textTheme.bodyLarge,
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 42, 16, 33),
-        child: GridView.count(
-          crossAxisCount: 3,
-          crossAxisSpacing: 22,
-          mainAxisSpacing: 40,
-          childAspectRatio: 100 / 140,
-          children: List.generate(
-            20,
-            (index) => Container(height: 140, width: 100, color: Colors.green),
-          ),
+        padding: const EdgeInsets.symmetric(
+          vertical: 32,
+          horizontal: 16,
+        ),
+        child: FutureBuilder(
+          future: _repository.getColors(),
+          builder: (context, AsyncSnapshot<List<ColorDto>> snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data!.isEmpty) {
+                return const Text(AppStrings.colorsEmpty);
+              }
+              return ColorsGrid(
+                colors: snapshot.data!,
+              );
+            } else if (snapshot.hasError) {
+              return const Text(AppStrings.errorLoading);
+            } else {
+              return const Center(
+                child: SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+          },
         ),
       ),
+    );
+  }
+}
+
+class ColorsGrid extends StatelessWidget {
+  final List<ColorDto> _colors;
+
+  const ColorsGrid({super.key, required List<ColorDto> colors}) : _colors = colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 3,
+      crossAxisSpacing: 22,
+      mainAxisSpacing: 40,
+      childAspectRatio: 100 / 140,
+      children: [..._colors.map((e) => ColorCard(colorDto: e))],
     );
   }
 }
