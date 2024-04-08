@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_courses_template/Models/color_dto.dart';
-import 'package:surf_flutter_courses_template/Screens/color_details_screen.dart';
-import 'package:surf_flutter_courses_template/Utils/copy_helper.dart';
-import 'package:surf_flutter_courses_template/Utils/hex_color.dart';
+import 'package:surf_flutter_courses_template/models/color_dto.dart';
+import 'package:surf_flutter_courses_template/screens/color_details_screen.dart';
+import 'package:surf_flutter_courses_template/utils/copy_helper.dart';
+import 'package:surf_flutter_courses_template/utils/hex_color.dart';
 
 class ColorCard extends StatelessWidget {
   final ColorDto _colorDto;
