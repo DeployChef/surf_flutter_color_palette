@@ -11,8 +11,8 @@ class ColorDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.sizeOf(context).height;
-    var color = HexColor.fromHex(_colorDto.hex);
+    final height = MediaQuery.sizeOf(context).height;
+    final color = HexColor.fromHex(_colorDto.hex);
     final theme = Theme.of(context);
 
     return Scaffold(
